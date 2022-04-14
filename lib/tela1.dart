@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+//Criado na Aula 3
+
+///Primeira tela do nosso aplicativo, apenas para entender como os Widgets Nativos funcionam. Não será utilizado no projeto posteriormente.
 class Tela1 extends StatelessWidget {
   const Tela1({Key? key}) : super(key: key);
 
