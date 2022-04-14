@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-//Tarefa StateLess, será atualizada para StateFull!
+
 class Tarefas extends StatefulWidget {
-  static double nivel = 0.9;
   final String nome;
   final String foto;
   final String lugar;
@@ -23,7 +22,6 @@ class _TarefasState extends State<Tarefas> {
     setState(() {
       level++;
     });
-    print(level);
   }
 
   @override
@@ -95,9 +93,9 @@ class _TarefasState extends State<Tarefas> {
                       onPressed: levelUp,
                       style: ElevatedButton.styleFrom(
                         primary: Colors.green,
-                        shape: CircleBorder(),
+                        shape: const CircleBorder(),
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons.arrow_circle_up,
                         size: 40.0,
                       ),
