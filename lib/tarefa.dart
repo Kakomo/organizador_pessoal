@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 //Tarefa StateLess, será atualizada para StateFull!
 class Tarefas extends StatefulWidget {
- static double nivel = 0.9;
+  static double nivel = 0.9;
   final String nome;
+  final String foto;
   final String lugar;
   final int tempo;
   final double dificuldade;
 
-  const Tarefas(this.nome, this.lugar, this.tempo, this.dificuldade,
-      {Key? key})
+  const Tarefas(this.nome,this.foto, this.lugar, this.tempo, this.dificuldade, {Key? key})
       : super(key: key);
 
   @override
@@ -18,12 +18,14 @@ class Tarefas extends StatefulWidget {
 
 class _TarefasState extends State<Tarefas> {
   int level = 1;
-  void levelUp(){
+
+  void levelUp() {
     setState(() {
       level++;
     });
     print(level);
   }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -40,6 +42,13 @@ class _TarefasState extends State<Tarefas> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 2),
+                    color: Colors.black26,
+                  ),
+                  child: Image.network(widget.foto,height: 110,width: 80,fit:BoxFit.cover,),
+                ),
                 Flexible(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -47,8 +56,8 @@ class _TarefasState extends State<Tarefas> {
                     children: [
                       const Text(
                         'Onde:',
-                        style:
-                            TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         widget.lugar,
@@ -57,8 +66,8 @@ class _TarefasState extends State<Tarefas> {
                       ),
                       const Text(
                         'Horas: ',
-                        style:
-                            TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         '${widget.tempo} hrs',
@@ -67,8 +76,8 @@ class _TarefasState extends State<Tarefas> {
                       ),
                       const Text(
                         'Dificuldade:',
-                        style:
-                            TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         widget.dificuldade.toString(),
@@ -100,7 +109,10 @@ class _TarefasState extends State<Tarefas> {
             const SizedBox(
               height: 10,
             ),
-            LinearProgressIndicator(value: (level/100),color: Colors.green,),
+            LinearProgressIndicator(
+              value: ((level/widget.dificuldade)/100),
+              color: Colors.green,
+            ),
           ],
         ),
       ),
