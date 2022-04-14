@@ -5,10 +5,17 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
+  bool opacidade = true;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,31 +37,38 @@ class MyApp extends StatelessWidget {
             ),
           ),
         ),
-        body: ListView(
-          children: const [
-            Tarefas(
-                'Estudar Flutter',
-                'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
-                'PC',
-                2,
-                0.5),
-            Tarefas(
-                'Estudar Flutter',
-                'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
-                'PC',
-                2,
-                1),
-            Tarefas(
-                'Estudar Flutter',
-                'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
-                'PC',
-                2,
-                0.1),
-          ],
+        body: AnimatedOpacity(
+          opacity: opacidade ? 1.0 : 0.0,
+          duration: const Duration(milliseconds: 500),
+          child: ListView(
+            children:  const [
+              Tarefas(
+                  'Estudar Flutter',
+                  'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
+                  'PC',
+                  2,
+                  0.5),
+              Tarefas(
+                  'Estudar Flutter',
+                  'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
+                  'PC',
+                  2,
+                  1),
+              Tarefas(
+                  'Estudar Flutter',
+                  'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
+                  'PC',
+                  2,
+                  0.1),
+            ],
+          ),
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            print('Você apertou o FAB!');
+            setState(() {
+              opacidade = !opacidade;
+              print(opacidade);
+            });
           },
           child: const Icon(Icons.add),
         ),
