@@ -19,17 +19,46 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Flutter: Primeiros Passos'),
+          leading: Container(
+            decoration: BoxDecoration(
+              border: Border.all(width: 2),
+              color: Colors.black26,
+            ),
+            child: Image.network(
+              'https://i.ibb.co/cctxpTG/kako-epifania-2022-18-2.jpg',
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
-        body: ListView(children: const [
-          Tarefas('Estudar Flutter', 'PC', 2, 0.5),
-          Tarefas('Estudar Flutter', 'PC', 2, 0.5),
-          Tarefas('Estudar Flutter', 'PC', 2, 0.5),
-        ],),
-        floatingActionButton: FloatingActionButton(onPressed: () {
-          print('Você apertou o FAB!');
-        },child: const Icon(Icons.add),),
+        body: ListView(
+          children: const [
+            Tarefas(
+                'Estudar Flutter',
+                'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
+                'PC',
+                2,
+                0.5),
+            Tarefas(
+                'Estudar Flutter',
+                'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
+                'PC',
+                2,
+                1),
+            Tarefas(
+                'Estudar Flutter',
+                'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
+                'PC',
+                2,
+                0.1),
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            print('Você apertou o FAB!');
+          },
+          child: const Icon(Icons.add),
+        ),
       ),
     );
   }
 }
-
