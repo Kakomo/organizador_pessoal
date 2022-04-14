@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 //Tarefa StateLess, será atualizada para StateFull!
-class Tarefas extends StatelessWidget {
-
+class Tarefas extends StatefulWidget {
+ static double nivel = 0.9;
   final String nome;
   final String lugar;
   final int tempo;
@@ -13,9 +13,19 @@ class Tarefas extends StatelessWidget {
       : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    int level = 1;
+  State<Tarefas> createState() => _TarefasState();
+}
 
+class _TarefasState extends State<Tarefas> {
+  int level = 1;
+  void levelUp(){
+    setState(() {
+      level++;
+    });
+    print(level);
+  }
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -24,7 +34,7 @@ class Tarefas extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
-              nome,
+              widget.nome,
               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             Row(
@@ -41,7 +51,7 @@ class Tarefas extends StatelessWidget {
                             TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        lugar,
+                        widget.lugar,
                         style: const TextStyle(
                             fontSize: 16, fontStyle: FontStyle.italic),
                       ),
@@ -51,7 +61,7 @@ class Tarefas extends StatelessWidget {
                             TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        '${tempo} hrs',
+                        '${widget.tempo} hrs',
                         style: const TextStyle(
                             fontSize: 16, fontStyle: FontStyle.italic),
                       ),
@@ -61,7 +71,7 @@ class Tarefas extends StatelessWidget {
                             TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        dificuldade.toString(),
+                        widget.dificuldade.toString(),
                         style: const TextStyle(
                             fontSize: 16, fontStyle: FontStyle.italic),
                       ),
@@ -73,10 +83,7 @@ class Tarefas extends StatelessWidget {
                   children: [
                     Text('Level: $level'),
                     ElevatedButton(
-                      onPressed: () {
-                        level++;
-                        print(level);
-                      },
+                      onPressed: levelUp,
                       style: ElevatedButton.styleFrom(
                         primary: Colors.green,
                         shape: CircleBorder(),
@@ -93,6 +100,7 @@ class Tarefas extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
+            LinearProgressIndicator(value: (level/100),color: Colors.green,),
           ],
         ),
       ),
